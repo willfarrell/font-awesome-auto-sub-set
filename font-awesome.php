@@ -1,12 +1,20 @@
 <?php
 
-//chdir('../');
+//-- Customize to meet your needs --//
 
-// Customize to meet your needs //
+// relative path to web app
 $dir = "../app/";
+
+// file extensions of files to search in
 $exts = array('html', 'js', 'kit');
+
+// folder not to scan
 $black_folders = array('img', 'php', 'json', 'lang', 'font', 'test');
-// End Customize //
+
+// auto place files into app folder - future feature
+$auto_place = false; // false will download the zip file
+
+//-- End Customize --//
 
 // Font-Awesome classes, but not icons
 $not_icons = array('', 'large', '2x', '3x', '4x', 'spin', 'muted' ,'border');
@@ -283,12 +291,13 @@ $master_icons = json_decode('[
 
 $list = php_grep($dir, $exts);
 $list = array_unique($list);
-
-if (!sizeof($list)) exit;
+if (!sizeof($list)) {
+	echo "No icons found.";
+	exit;
+}
 
 // format request
 $json_data = array();
-
 foreach($master_icons as $icon) {
 	if (in_array($icon->name, $list)) {
 		$json_data[] = $icon;
@@ -314,7 +323,13 @@ $resp = curl_exec($curl);
 curl_close($curl);
 // End CURL
 
-header("Location: http://icnfnt.com$resp");
+
+if ($auto_place) {
+	
+} else {
+	header("Location: http://icnfnt.com$resp");
+}
+
 
 function php_grep($path, $ext){
 	global $black_folders;
