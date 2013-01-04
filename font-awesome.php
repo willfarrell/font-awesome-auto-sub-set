@@ -347,7 +347,7 @@ function php_grep($path, $ext){
 			$return = array_merge($return, php_grep($file_full_path.'/', $ext));
 		} else if (isset($path_parts['extension']) && in_array($path_parts['extension'],$ext)) {
 			$file = file_get_contents($file_full_path);
-			$count = preg_match_all("/[\" ']?icon-([a-z0-9\-]*)/", $file, $matches);
+			$count = preg_match_all("/[=\"' ]?icon-([a-z0-9\-]*)/", $file, $matches);
 			//print_r($matches);
 			if ($count) $return = array_merge($return, $matches[1]);
 		} else {
