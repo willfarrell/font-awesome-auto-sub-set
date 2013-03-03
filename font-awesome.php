@@ -310,7 +310,7 @@ $curl = curl_init();
 // Set some options - we are passing in a useragent too here
 curl_setopt_array($curl, array(
     CURLOPT_RETURNTRANSFER => 1,
-    CURLOPT_URL => 'http://icnfnt.com/api/createpack',
+    CURLOPT_URL => 'http://www.icnfnt.com/api/createpack',
     CURLOPT_USERAGENT => 'icnfnt API cURL Request',
     CURLOPT_POST => 1,
     CURLOPT_POSTFIELDS => array(
@@ -327,7 +327,7 @@ curl_close($curl);
 if ($auto_place) {
 	
 } else {
-	header("Location: http://icnfnt.com$resp");
+	header("Location: http://www.icnfnt.com$resp");
 }
 
 
